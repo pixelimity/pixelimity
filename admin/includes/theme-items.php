@@ -41,8 +41,9 @@ $not_completed_themes = get_themes('not_completed');
 					<div class="theme">
 						<?php 
 							$data = array();
-							$data['dir'] = end(explode('/', $theme));
-							$data['screenshot'] = get_site_url() .'/themes/'. end(explode('/', $theme)) .'/screenshot.png';
+							$theme_slugs = explode('/', $theme);
+							$data['dir'] = end($theme_slugs);
+							$data['screenshot'] = get_site_url() .'/themes/'. end($theme_slugs) .'/screenshot.png';
 							
 							$style = file($theme .'/style.css');
 							foreach ($style as $line => $value) :
