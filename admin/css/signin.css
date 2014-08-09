@@ -1,0 +1,25 @@
+.signin .container {
+	width: 300px;
+	margin: 160px auto;
+}
+
+.signin .logo { 
+	text-align: center;
+	line-height: 0;
+	margin-bottom: 20px;
+}
+
+.msg2 { 
+	text-align: center;
+	margin-bottom: 20px; 
+}
+.error-text { color: #f46e6e; }
+
+.signin form p { margin-bottom: 10px; }
+.signin form p:last-child { margin-bottom: 0; }
+.signin form .submit { margin-top: 20px; }
+.signin form p .lost-password { 
+	margin-left: 20px;
+	color: #a9b1b5;
+}
+.signin form p .lost-password:hover { color: #5a6063; }
