@@ -42,6 +42,6 @@ if (get_option('active_theme') && file_exists(DIR .'/themes/'. get_option('activ
 	
 /* Redirect to sign in page if user not signed in */
 if (defined('ADMIN') && !is_signed_in() && $_SERVER['SCRIPT_NAME'] != PATH .'/admin/signin.php')
-	redirect_to('/admin/signin.php?return='. urlencode($_SERVER['REQUEST_URI']), true);
+	redirect_to('/admin/signin.php?return='. urlencode(str_replace(PATH, '', $_SERVER['REQUEST_URI'])), true);
 
 ?>
