@@ -153,12 +153,12 @@ endif;
 						
 					<div class="field">
 						<label for="dbhost" class="label">Host<span>Enter your database host. Default: localhost.</span></label>
-						<input type="text" name="data[dbhost]" id="dbhost" class="input dbhost" value="<?php echo (isset($data['dbhost'])) ? $data['dbhost'] : 'localhost'; ?>" />
+						<input type="text" name="data[dbhost]" id="dbhost" required="required" class="input dbhost" value="<?php echo (isset($data['dbhost'])) ? $data['dbhost'] : 'localhost'; ?>" />
 					</div>
 					
 					<div class="field">
 						<label for="dbuser" class="label">Username<span>Enter your database user. Default: root.</span></label>
-						<input type="text" name="data[dbuser]" id="dbhost" class="input dbuser" value="<?php echo (isset($data['dbuser'])) ? $data['dbuser'] : 'root'; ?>" />
+						<input type="text" name="data[dbuser]" id="dbhost" required="required" class="input dbuser" value="<?php echo (isset($data['dbuser'])) ? $data['dbuser'] : 'root'; ?>" />
 					</div>
 					
 					<div class="field">
@@ -168,24 +168,24 @@ endif;
 					
 					<div class="field">
 						<label for="dbname" class="label">Name<span>Enter your database name. Default: pixelimity.</span></label>
-						<input type="text" name="data[dbname]" id="dbname" class="input dbname" value="<?php echo (isset($data['dbname'])) ? $data['dbname'] : 'pixelimity'; ?>" />
+						<input type="text" name="data[dbname]" id="dbname" required="required" class="input dbname" value="<?php echo (isset($data['dbname'])) ? $data['dbname'] : 'pixelimity'; ?>" />
 					</div>
 					
 					<h3 class="field-section-title">Account Setup</h3>
 					
 					<div class="field">
 						<label for="username" class="label">Username<span>Enter your username. Default: admin.</span></label>
-						<input type="text" name="data[username]" id="username" class="input username" value="<?php echo (isset($data['username'])) ? $data['username'] : 'admin'; ?>" />
+						<input type="text" name="data[username]" id="username" required="required" class="input username" value="<?php echo (isset($data['username'])) ? $data['username'] : 'admin'; ?>" />
 					</div>
 					
 					<div class="field">
 						<label for="password" class="label">Password<span>Enter your password. Default: empty.</span></label>
-						<input type="password" name="data[password]" id="password" class="input password" value="<?php echo (isset($data['password'])) ? $data['password'] : ''; ?>" />
+						<input type="password" name="data[password]" id="password" required="required" class="input password" value="<?php echo (isset($data['password'])) ? $data['password'] : ''; ?>" />
 					</div>
 					
 					<div class="field">
 						<label for="email" class="label">Email<span>Enter your email. Default: empty.</span></label>
-						<input type="text" name="data[email]" id="email" class="input email" value="<?php echo (isset($data['email'])) ? $data['email'] : ''; ?>" />
+						<input type="text" name="data[email]" id="email" required="required" class="input email" value="<?php echo (isset($data['email'])) ? $data['email'] : ''; ?>" />
 					</div>
 					
 					<h3 class="field-section-title">Site Setup</h3>
