@@ -1,42 +1,47 @@
-#pixelimity (Content management System)
+#[pixelimity](http://pixelimity.com) — Content Management System
 
-Ini adalah repository terbuka project untuk proyek cms pixelimity, berasal dari pusat pengembangan  di [official website](http://pixelimity.com)
+pixelimity adalah CMS open source berbasis PHP dengan tampilan sederhana, mengedepankan kemudahan penggunaan dan pengembangan.
 
-pixelimity adalah Sebuah CMS open source dengan tampilan sederhana, aplikasi berbasis web dengan pengembangan bahasa PHP bernama. kita sebut sebagai Pixelimity.
+##Filisofi
+* Mudah digunakan (user friendly)
+* Mudah dikustomisasi (customizable)
+* Ringan (lightwight)
+* Ramah bagi pengembang (developer-friendly)
+* Ramah bagi desainer (designer-friendly)
 
-##Filisofy:
-* User friendly/Easy
-* Customizable
-* Lightweight
-* Developer friendly
-* Designer friendly
-
-##Fitur - fitur
+##Fitur-fitur
 * Themes
 * Markdown
-##System Requirements
-* Apache Webserver / Nginx
+
+##Instalasi
+Sebelum menginstal pixelimity, pastikan kebutuhan sistem telah terpenuhi.
+
+###Kebutuhan Sistem
+* Apache/nginx web server
 * PHP 5.3+ 
 * MySQL 5.2+
-##Bagaimana Menginstal Cms Pixeliminty?
-Untuk menggunakan cms luar biasa bernama pixelimity, anda hanya pelu mengunduh [master terbaru ] (https://github.com/pixelimity/pixelimity/archive/master.zip), kemudian anda upload pada root folder website anda. Misalkan website anda diakses melalui `http://localhost`, maka letakkan master file pada `htdocs/pixelimity`. sekarang, kunjungi `http://localhost/pixelimity` dan lengkapi semua penyiapan awal untuk mengkonfigurasi administrasi web serta informasi dari database. Tutorial mendetail akan kami perbaharui pada masa mendatang.
 
-[![Isntal Pixelimity](https://51109c86c228c6861d2ad74e213336b5d4b09161.googledrive.com/host/0B2o_BOAOc-rqR1dVanBZZDQwaHM/pixelimity.jpg)]
+Sebagian besar pengujian mengandalkan PHP 5.3+, yang diinstal pada web server Apache. Bila Anda memerlukan sebuah web server beberapa opsi berikut apat dijadikan pilihan:
+* [MAMP](http://www.mamp.info/en/downloads/index.html) untuk OS X,
+* [XAMPP](http://www.apachefriends.org/en/xampp.html) untuk OS X/Windows.
 
-Sebagian besar dokumentasi dan pengujian halaman mengandalkan PHP 5.3 +, yang diinstal pada webserver Apache dan PHP yang diperlukan untuk pengembangan. Bila anda memerlukan sebuah web server mungkin beberapa opsi berikut adalah solusi:
+###Langkah-langkah instalasi
+Untuk menggunakan pixelimity, Anda perlu mengunduh [berkas master terbaru](https://github.com/pixelimity/pixelimity/archive/master.zip), lalu upload dan ekstrak ke direktori root dari web server Anda.
 
-* 1 klik - [MAMP](http://www.mamp.info/en/downloads/index.html) untuk OSX,
-* 1 klik [XAMP](http://www.apachefriends.org/en/xampp.html) untuk OSX/Windows.
+Misalkan web server Anda diakses melalui `http://localhost/`, dan direktori root web server berada di `C:\xampp\htdocs\` maka letakkan hasil ekstrak berkas master pada `C:\server\htdocs\pixelimity\`.
 
-#Pratampil (demo)
-Anda dapat melihat bagaimana cms ini bekerja di http://pixelimity.com (akan segera hadir)
+Selanjutnya, kunjungi `http://localhost/pixelimity` dan lengkapi semua penyiapan awal untuk mengkonfigurasi administrasi web serta informasi dari database. Tutorial mendetail Akan kami perbarui pada masa mendatang.
 
-#Dev. Team
-Founder/Designer/Developer: Dicky Syaputra 
-Developer: Wak Hehe Jek
-Editor Repo : Vom
-Repository: https://github.com/pixelimity/pixelimity
+![Proses instalasi pixelimity](https://51109c86c228c6861d2ad74e213336b5d4b09161.googledrive.com/host/0B2o_BOAOc-rqR1dVanBZZDQwaHM/pixelimity.jpg)
+*Proses instalasi pixelimity*
+
+##Pratampil (demo)
+Anda dapat melihat dan mencoba pixelimity secara langsung di http://pixelimity.com (akan segera hadir).
+
+##Tim Developer
+* Pendiri, Desainer, Pengembang: Dicky Syaputra 
+* Pengembang: Wak Hehe Jek
+* Editor Repo: Vom, Ian Mustafa
 
 ##Mari Berkontribusi
-Kami mengundang teman-teman sekalian yang ingin join di projek ini. Tiada lebih dari dukungan dari anda, kami akan sangat menghargai setiap kontribusi dari anda untuk bersama mengembangkan cms pixelimity agar dapat bermanfaat bagi dunia. Yang mau ikut berkontribusi, silakan fork/edit/commit/pull request.
-Bug reports silakan submit issues.
+Kami mengundang teman-teman yang ingin bergabung dalam proyek ini. Kami akan sangat menghargai setiap kontribusi dari Anda untuk bersama mengembangkan pixelimity agar dapat bermanfaat bagi dunia. Bagi Anda yang ingin berkontribusi, silakan fork/edit/commit/pull request. Untuk bug report, silakan submit issues.
