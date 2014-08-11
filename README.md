@@ -1,3 +1,6 @@
+`WARNING: This is early stage release and intended for testing purpose only. Using this CMS on live production site is not recommended.`
+
+
 #[pixelimity](http://pixelimity.com) — Content Management System
 
 pixelimity adalah CMS open source berbasis PHP dengan tampilan sederhana, mengedepankan kemudahan penggunaan dan pengembangan.
