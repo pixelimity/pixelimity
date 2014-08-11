@@ -9,7 +9,7 @@ session_start();
 
 /* Define some parameters */
 define ('BASE', str_replace("\\", "/", dirname(__FILE__)), true);
-define ('PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', BASE));
+define ('PATH', str_replace(rtrim($_SERVER['DOCUMENT_ROOT'], '/'), '', BASE));
 define ('DIR', BASE);
 define ('URL', 'http://'. $_SERVER['HTTP_HOST'] . PATH);
 define ('UPLOAD_DIR', DIR .'/uploads/', true);

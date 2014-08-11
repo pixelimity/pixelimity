@@ -4,7 +4,7 @@
  * @package pixelimity
  */
 define ('BASE', str_replace("\\", "/", dirname(dirname(__FILE__))), true);
-define ('PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', BASE));
+define ('PATH', str_replace(rtrim($_SERVER['DOCUMENT_ROOT'], '/'), '', BASE));
 define ('DIR', BASE);
 define ('URL', 'http://'. $_SERVER['HTTP_HOST'] . PATH);
 if (file_exists(DIR .'/install/config.php')) :
