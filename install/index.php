@@ -7,7 +7,6 @@ define ('BASE', str_replace("\\", "/", dirname(dirname(__FILE__))), true);
 define ('PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', BASE));
 define ('DIR', BASE);
 define ('URL', 'http://'. $_SERVER['HTTP_HOST'] . PATH);
-error_reporting(~0);
 if (file_exists(DIR .'/install/config.php')) :
     header("Location: ". URL);
 endif;
@@ -40,7 +39,7 @@ if (isset($_POST['submit_install'])) :
     
     if (!$error) :
         try {
-            // error_reporting(0);
+            error_reporting(0);
             $db = new PDO('mysql:host='. $data['dbhost'] .';dbname='. $data['dbname'], $data['dbuser'], $data['dbpassword'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
             $sql = str_replace(
                 array('{{site_name}}', '{{site_description}}', '{{username}}', '{{password}}', '{{email}}'), 
