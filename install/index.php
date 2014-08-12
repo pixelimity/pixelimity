@@ -7,6 +7,7 @@ define ('BASE', str_replace("\\", "/", dirname(dirname(__FILE__))), true);
 define ('PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', BASE));
 define ('DIR', BASE);
 define ('URL', 'http://'. $_SERVER['HTTP_HOST'] . PATH);
+
 if (file_exists(DIR .'/install/config.php')) :
     header("Location: ". URL);
 endif;
@@ -115,7 +116,7 @@ endif;
   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo URL .'/admin/css/admin.css'; ?>">
   <link rel="shortcut icon" href="<?php echo URL .'/admin/images/favicon.png'; ?>">
 </head>
-<body>
+<body class="install">
   <nav id="admin-menu">
     <div class="logo">
       <a href="<?php echo URL; ?>/install"><img src="<?php echo URL; ?>/admin/images/admin-logo.png" alt="Pixelimity" /></a>
@@ -128,7 +129,7 @@ endif;
   <!-- nav#admin-menu -->
   <div id="main">
     <form class="form-edit clearfix" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-      <header id="page-header" class="clearfix">
+      <header id="page-header" class="clearfix scrollfixed">
         <h1>Install Pixelimity</h1>
         <div class="actions">
           <input type="submit" class="btn btn-blue btn-submit" name="submit_install" value="Complete Install">
