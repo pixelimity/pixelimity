@@ -5,10 +5,10 @@
 
 pixelimity adalah CMS open source berbasis PHP dengan tampilan sederhana, mengedepankan kemudahan penggunaan dan pengembangan.
 
-##Filisofi
+##Filosofi
 * Mudah digunakan (user friendly)
 * Mudah dikustomisasi (customizable)
-* Ringan (lightwight)
+* Ringan (lightweight)
 * Ramah bagi pengembang (developer-friendly)
 * Ramah bagi desainer (designer-friendly)
 
