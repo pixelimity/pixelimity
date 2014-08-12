@@ -167,8 +167,8 @@ ob_start('compress_html');
 				<?php endif; ?>
 			
 				<form method="post" action="">
-					<p><input type="password" name="data[password]" id="password" class="input password" placeholder="Password" /></p>
-					<p><input type="password" name="data[confirm_password]" id="confirm-password" class="input confirm-password" placeholder="Confirm Password" /></p>
+					<p><input type="password" name="data[password]" id="password" required="required" class="input password" placeholder="Password" /></p>
+					<p><input type="password" name="data[confirm_password]" id="confirm-password" required="required" class="input confirm-password" placeholder="Confirm Password" /></p>
 					<p class="submit">
 						<input type="submit" name="new_password" class="btn btn-blue" value="Create New Password" />
 						<a class="lost-password" href="<?php admin_url(); ?>/signin.php">Back</a>
@@ -190,7 +190,7 @@ ob_start('compress_html');
 				<?php endif; ?>
 			
 				<form method="post" action="">
-					<p><input type="text" name="data[username_or_email]" id="username-or-email" class="input username-or-email" placeholder="Username or Email" /></p>
+					<p><input required="required" type="text" name="data[username_or_email]" id="username-or-email" class="input username-or-email" placeholder="Username or Email" /></p>
 					<p class="submit">
 						<input type="submit" name="lost_password" class="btn btn-blue" value="Get Confirmation Link" />
 						<a class="lost-password" href="<?php admin_url(); ?>/signin.php">Back</a>
@@ -208,8 +208,8 @@ ob_start('compress_html');
 				<?php endif; ?>
 				
 				<form method="post" action="">
-					<p><input type="text" name="data[username]" id="username" class="input username" placeholder="Username" /></p>
-					<p><input type="password" name="data[password]" id="password" class="input password" placeholder="Password" /></p>
+					<p><input type="text" name="data[username]" id="username" required="required" class="input username" placeholder="Username" /></p>
+					<p><input type="password" name="data[password]" id="password" required="required" class="input password" placeholder="Password" /></p>
 					<p class="submit">
 						<input type="submit" name="signin" class="btn btn-blue" value="Sign In" />
 						<a class="lost-password" href="<?php admin_url(); ?>/signin.php?action=lost_password">Lost password?</a>
