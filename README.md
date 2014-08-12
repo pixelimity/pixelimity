@@ -31,7 +31,7 @@ Sebagian besar pengujian mengandalkan PHP 5.3+, yang diinstal pada web server Ap
 ###Langkah-langkah instalasi
 Untuk menggunakan pixelimity, Anda perlu mengunduh [berkas master terbaru](https://github.com/pixelimity/pixelimity/archive/master.zip), lalu upload dan ekstrak ke direktori root dari web server Anda.
 
-Misalkan web server Anda diakses melalui `http://localhost/`, dan direktori root web server berada di `C:\xampp\htdocs\` maka letakkan hasil ekstrak berkas master pada `C:\server\htdocs\pixelimity\`.
+Misalkan web server Anda diakses melalui `http://localhost/`, dan direktori root web server berada di `C:\xampp\htdocs\` maka letakkan hasil ekstrak berkas master pada `C:\xampp\htdocs\pixelimity\`.
 
 Selanjutnya, kunjungi `http://localhost/pixelimity` dan lengkapi semua penyiapan awal untuk mengkonfigurasi administrasi web serta informasi dari database. Tutorial mendetail Akan kami perbarui pada masa mendatang.
 

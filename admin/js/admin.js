@@ -1,25 +1,37 @@
-jQuery(document).ready(function() {
+/*! 
+ * admin javascript aplication
+ * @package pixelimity
+ */
 
-	$(window).load(function() {
-		$('#loaded').fadeIn(200);
-		setInterval(function() {
-			$('#loaded').fadeOut(200);
-		}, 800);	
-		$('#page-header').addClass('fixed').css({ width: $('#main').width() });
-		$('#content').css({ marginTop: $('#page-header').outerHeight(true) });
-		
-		if ($('.lists .content').height() < $('.lists .statistics').outerHeight(true))
-			$('.lists .content').css({ minHeight: $('.lists .statistics').outerHeight(true) });
-		
-		if ( $('.lists .statistics').length > 0 ) {
-			var statistic_pos = $('.lists .statistics').position();
-			var statistic_pos_start = statistic_pos.top - 40;
-		
-			$(window).scroll(function() {
-				if ($(window).scrollTop() >= statistic_pos_start)
-					$('.lists .statistics').css({ top: $(window).scrollTop() + 40 });
-			});
-		}
-	});
+// prevent jQuery Conflict
+(function($) {
 
-});
+    /* Document ready
+    ------------------------------ */
+    $(document).ready(function() {
+        /* Add JS when browser enable javascript
+         * and this script is rendered for different rule
+         * --------------------------------------- */
+        $('#main, #admin-menu, #footer,#mobilebutton').addClass('js');
+        $('#mobilebutton').click(function(e) {
+            // prevent original proccessing
+            e.preventDefault();
+            // toggle class active to button
+            $(this).toggleClass('active')
+            // toggle class on certain rule id
+            $('#main, #admin-menu, #footer').toggleClass('active');
+        });
+
+        /* Add preloader animation when windows load
+         ----------------------------------------- */
+        $(window).load(function() {
+            // hide the loaded 
+            $('#loaded').fadeIn(200);
+            // add interval 0.8 second / wait the browser loads
+            setInterval(function() {
+                $('#loaded').fadeOut(200);
+            }, 800);
+        });
+
+    });
+})(window.jQuery);

@@ -10,8 +10,10 @@ function get_option($key) {
 	$options = $db->select_all('options');
 	
 	foreach ($options as $option)
-		if ($option['option_key'] == $key)
+		if ($option['option_key'] == $key) :
 			return $option['value'];
+		endif;
+	endforeach;
 }
 
 function get_site_name() {
@@ -50,9 +52,10 @@ function get_portfolio_images_count($id) {
 function setup_pagination($per_page) {
 	$page = 1;
 	
-	if (isset($_GET['p'])) 
+	if (isset($_GET['p'])) :
 		$page = $_GET['p'];
-		
+	endif;
+
 	$current_page = $page;
 	$page -= 1;
 	$per_page = $per_page;
@@ -62,12 +65,10 @@ function setup_pagination($per_page) {
 }
 
 function redirect_to($uri, $self = false) {
-	if ($self)
+	if ($self) :
 		header("Location: ". get_site_url() . $uri);
-	else
+	else :
 		header("Location: ". $uri);
-	
+	endif;
 	exit();
 }
-
-?>
