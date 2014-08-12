@@ -3,48 +3,44 @@
 
 #[pixelimity](http://pixelimity.com) — Content Management System
 
-pixelimity adalah CMS open source berbasis PHP dengan tampilan sederhana, mengedepankan kemudahan penggunaan dan pengembangan.
+Pixelimity is an open source CMS based on PHP language with clean interface. It promotes the convenience of use and development.
 
-##Filisofi
-* Mudah digunakan (user friendly)
-* Mudah dikustomisasi (customizable)
-* Ringan (lightwight)
-* Ramah bagi pengembang (developer-friendly)
-* Ramah bagi desainer (designer-friendly)
+##Philosophy
+* Practical
+* Customizable
+* Lightweight
+* Developer friendly
+* Designer friendly
 
-##Fitur-fitur
+##Features
 * Themes
-* Markdown
+* Support markdown
 
-##Instalasi
-Sebelum menginstal pixelimity, pastikan kebutuhan sistem telah terpenuhi.
-
-###Kebutuhan Sistem
+##System Requirements
 * Apache/nginx web server
 * PHP 5.3+ 
 * MySQL 5.2+
 
-Sebagian besar pengujian mengandalkan PHP 5.3+, yang diinstal pada web server Apache. Bila Anda memerlukan sebuah web server beberapa opsi berikut apat dijadikan pilihan:
-* [MAMP](http://www.mamp.info/en/downloads/index.html) untuk OS X,
-* [XAMPP](http://www.apachefriends.org/en/xampp.html) untuk OS X/Windows.
+We rely on PHP 5.3+ and Apache web server as our main testing environment. You can use the stack below to install Pixelimity on your local machine:
+* [MAMP](http://www.mamp.info/en/downloads/index.html) for OSX,
+* [XAMPP](http://www.apachefriends.org/en/xampp.html) for OSX or Windows.
+* Manually install LAMP stack on Linux machine.
 
-###Langkah-langkah instalasi
-Untuk menggunakan pixelimity, Anda perlu mengunduh [berkas master terbaru](https://github.com/pixelimity/pixelimity/archive/master.zip), lalu upload dan ekstrak ke direktori root dari web server Anda.
+###How to Install
+1. Download the latest Pixelimity from [here](https://github.com/pixelimity/pixelimity/archive/master.zip).
+2. Upload and extract the package to your web server's document root e.g., `C:\xampp\htdocs\` on XAMPP for Windows, `/var/www/html/` on Ubuntu 14.04, or `/Applications/MAMP/htdocs/` on MAMP for OSX.
+3. Visit `http://localhost/pixelimity` (localhost is default host for Apache and Nginx) and complete all configuration fields on installation view.
 
-Misalkan web server Anda diakses melalui `http://localhost/`, dan direktori root web server berada di `C:\xampp\htdocs\` maka letakkan hasil ekstrak berkas master pada `C:\server\htdocs\pixelimity\`.
+![Pixelimity installation process](https://51109c86c228c6861d2ad74e213336b5d4b09161.googledrive.com/host/0B2o_BOAOc-rqR1dVanBZZDQwaHM/pixelimity.jpg)
+*Pixelimity installation process*
 
-Selanjutnya, kunjungi `http://localhost/pixelimity` dan lengkapi semua penyiapan awal untuk mengkonfigurasi administrasi web serta informasi dari database. Tutorial mendetail Akan kami perbarui pada masa mendatang.
+##Demo Preview
+You can play and taste a bite of Pixelimity on http://pixelimity.com (coming soon).
 
-![Proses instalasi pixelimity](https://51109c86c228c6861d2ad74e213336b5d4b09161.googledrive.com/host/0B2o_BOAOc-rqR1dVanBZZDQwaHM/pixelimity.jpg)
-*Proses instalasi pixelimity*
+##Developer Team
+* Founder, designer, and developer: Dicky Syaputra 
+* Developer: Wak Hehe Jek
+* Repository editor: Vom, Ian Mustafa
 
-##Pratampil (demo)
-Anda dapat melihat dan mencoba pixelimity secara langsung di http://pixelimity.com (akan segera hadir).
-
-##Tim Developer
-* Pendiri, Desainer, Pengembang: Dicky Syaputra 
-* Pengembang: Wak Hehe Jek
-* Editor Repo: Vom, Ian Mustafa
-
-##Mari Berkontribusi
-Kami mengundang teman-teman yang ingin bergabung dalam proyek ini. Kami akan sangat menghargai setiap kontribusi dari Anda untuk bersama mengembangkan pixelimity agar dapat bermanfaat bagi dunia. Bagi Anda yang ingin berkontribusi, silakan fork/edit/commit/pull request. Untuk bug report, silakan submit issues.
+##Let's Contribute
+We encourage all the developer to contribute in Pixelimity. We really appreciate every single contribution from you to grow up Pixelimity and make it applicable for the rest of the world. You can contribute by forking, editing, commiting, and submitting pull request; or submit issue by writing it in issue tracker.
