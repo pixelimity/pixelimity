@@ -15,6 +15,7 @@ function get_option($key) {
 			return $option['value'];
 		endif;
 	endforeach;
+
 }
 
 function get_site_name() {
