@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Sign in Page
+ * @package pixelimity
+ */
 /* Define PXL, ADMIN */
 define ('PXL', true, true);
 define ('ADMIN', true, true);
@@ -8,24 +11,30 @@ define ('ADMIN', true, true);
 require_once ('../config.php');
 
 /* Redirect if user alread signed in */
-if (is_signed_in())
+if (is_signed_in()) :
     redirect_to('/admin/portfolio.php', true);
+endif;
 
-/* Set page title */
-if (isset($_GET['action']) && $_GET['action'] == 'new_password' && isset($_GET['rp_code'])) 
+/**
+ * Set page title
+ */
+if (isset($_GET['action']) && $_GET['action'] == 'new_password' && isset($_GET['rp_code'])) :
     $title = 'Create New Password';
-elseif (isset($_GET['action']) && $_GET['action'] == 'lost_password') 
+elseif (isset($_GET['action']) && $_GET['action'] == 'lost_password') :
     $title = 'Lost Password';
-else
+else :
     $title = 'Sign In';
-    
+endif;
+
 /* Check if reset password code is valid */
 if (isset($_GET['action']) && $_GET['action'] == 'new_password' && isset($_GET['rp_code'])) :
     global $db;
     
     $rp_code = $_GET['rp_code'];
-    if ($db->row_count('admin', 'rp_code', $rp_code) == 0)
+    if ($db->row_count('admin', 'rp_code', $rp_code) == 0) :
         redirect_to('/admin/signin.php?action=lost_password&error=rp_code', true);
+    endif;
+
 endif;
     
 /* Action for sign in */
@@ -35,7 +44,7 @@ if (isset($_POST['signin'])) :
     $data = array();
     $exists = true;
     $return = '';
-    
+
     /* Get return URL */
     if (isset($_GET['return'])) 
         $return = urldecode($_GET['return']);
@@ -45,22 +54,32 @@ if (isset($_POST['signin'])) :
         $data[$key] = $value;
         
     /* If username and password don't exists */
-    if ($db->row_count('admin', 'username', array($data['username'], md5($data['password'])), ' AND password = ?') == 0)
+    if ($db->row_count('admin', 'username', array($data['username']) ) == 0) :
         $exists = false;
-        
+    endif;
+
     /* Set error notification */
-    if (empty($data['username']) || empty($data['password']) || !$exists) :
+    if (empty($data['username']) || empty($data['password']) || !$exists || 
+        // else if complete but not matched hashes
+        (
+            ! empty($data['username']) && ! empty($data['password']) && $exists &&
+            // check password hashes
+            ! check_passwordhashes( $data['username'] , md5( $data['password'] ) )
+            )
+        ) :
         $message = 'Sign in failed. Please try again.';
     else :
     
         /* Set session */
-        $_SESSION['ADMIN'] = array('u' => $data['username'], 'hash' => md5($data['username'] . $data['password']));
+        $_SESSION['ADMIN'] = array('u' => $data['username'], 'hash' => md5($data['username']), 'time' => time());
         
         /* Redirect */
-        if ($return) 
+        if ($return) :
             redirect_to($return, true);
-        else
+        else :
             redirect_to('/admin/portfolio.php', true);
+        endif;
+
     endif;
 endif;
 

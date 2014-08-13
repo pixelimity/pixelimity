@@ -34,7 +34,8 @@ if (is_submit('setting')) :
     if (empty($admin_data[':password']) || strlen($admin_data[':password']) < 6) :
         $admin_data[':password'] = $old_admin_data['password'];
     else :
-        $admin_data[':password'] = md5($admin_data[':password']);
+        // hashing password
+        $admin_data[':password'] = hash_password(md5($admin_data[':password']));
     endif;
 
     if (empty($admin_data[':email']) || !filter_var($admin_data[':email'], FILTER_VALIDATE_EMAIL)) :
@@ -87,7 +88,7 @@ if (is_submit('setting')) :
 
     $db->update('admin', $admin_data, 'username', $old_admin_data['username']);
 
-    $_SESSION['ADMIN'] = array('u' => $old_admin_data['username'], 'hash' => md5($old_admin_data['username'] . $admin_data[':password']));
+    $_SESSION['ADMIN'] = array('u' => $old_admin_data['username'], 'hash' => md5($old_admin_data['username']), 'time' => time() );
 
     redirect_to('/admin/setting.php?message=1', true);
 endif;
