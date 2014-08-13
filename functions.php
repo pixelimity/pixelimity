@@ -9,7 +9,7 @@ function get_option($key) {
 	
 	$options = $db->select_all('options');
 	
-	foreach ($options as $option)
+	foreach ($options as $option) :
 		if ($option['option_key'] == $key) :
 			return $option['value'];
 		endif;
