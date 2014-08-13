@@ -245,6 +245,9 @@ function get_portfolio_thumbnail() {
 }
 
 function the_portfolio_thumbnail() {
+	if(has_portfolio_thumbnail())
+		return false;
+	
 	echo get_portfolio_thumbnail();
 }
 	
@@ -494,6 +497,9 @@ function portfolio_class($external_class = '') {
 		$class = 'portfolio portfolio-single portfolio-'. get_the_ID();
 	else
 		$class = 'portfolio portfolio-'. get_the_ID();
+
+	if(!has_portfolio_thumbnail())
+		$class .= ' no-thumbnail';
 	
 	if ($external_class) 
 		$class = $class . ' '. implode((array)$external_class, ' ');
