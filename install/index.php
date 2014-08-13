@@ -64,17 +64,18 @@ if (isset($_POST['submit_install'])) :
             
             if (!file_exists(DIR .'/.htaccess')) :
                 $rewrite = '
-                    Options -Indexes
-                    ErrorDocument 404 '. PATH .'/index.php?error
-                    RewriteEngine On
-                    RewriteCond %{REQUEST_FILENAME} !-f
-                    RewriteCond %{REQUEST_FILENAME} !-d
-                    RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
-                    RewriteRule (.*)$ '. PATH .'/$1/ [R=301,QSA]
-                    RewriteRule ^portfolio/([a-z-0-9-/]+)/$ index.php?portfolio=$1 [QSA]
-                    RewriteRule ^tag/([a-z-0-9-/]+)/$ index.php?tag=$1 [QSA]
-                    RewriteRule ^page/([a-z-0-9-/]+)/$ index.php?page=$1 [QSA]
-                ';
+# add rewrite rule for pixelimity route friendly url
+Options -Indexes
+ErrorDocument 404 '. PATH .'/index.php?error
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule (.*)$ '. PATH .'/$1/ [R=301,QSA]
+RewriteRule ^portfolio/([a-z-0-9-/]+)/$ index.php?portfolio=$1 [QSA]
+RewriteRule ^tag/([a-z-0-9-/]+)/$ index.php?tag=$1 [QSA]
+RewriteRule ^page/([a-z-0-9-/]+)/$ index.php?page=$1 [QSA]
+';
                 $config_file = fopen(DIR .'/.htaccess', 'w');
                 fwrite($config_file, str_replace('\t', '', $rewrite));
                 fclose($config_file);

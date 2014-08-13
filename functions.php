@@ -1,19 +1,21 @@
 <?php
 
 /* Exit if PXL not defined */
-if (!defined('PXL'))
+if (!defined('PXL')) {
 	exit('You can\'t access direct script.');
+}
 	
 function get_option($key) {
 	global $db;
 	
 	$options = $db->select_all('options');
 	
-	foreach ($options as $option)
+	foreach ($options as $option) :
 		if ($option['option_key'] == $key) :
 			return $option['value'];
 		endif;
 	endforeach;
+
 }
 
 function get_site_name() {
@@ -65,10 +67,16 @@ function setup_pagination($per_page) {
 }
 
 function redirect_to($uri, $self = false) {
+	// set header found 302 status
+	header('HTTP/1.1 302 Found');
+	// prevent duplicate header location remove it before
+	header_remove('Location');
 	if ($self) :
 		header("Location: ". get_site_url() . $uri);
 	else :
 		header("Location: ". $uri);
 	endif;
+
+	// die here
 	exit();
 }

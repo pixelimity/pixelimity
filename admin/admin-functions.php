@@ -1,4 +1,8 @@
 <?php
+/**
+ * Administrator area function and definition
+ * @package pixelimity
+ */
 
 /* Exit if PXL not defined */
 if (!defined('PXL')) {
@@ -9,10 +13,134 @@ function admin_css_uri() {
     return admin_url() .'/css/admin.css';
 }
 
-function is_signed_in() {
-    if (isset($_SESSION['ADMIN'])) :
-        return true;
+/**
+ * Hashing password password mustbe MD5
+ * using PaswordHash class
+ * @return string
+ */
+function hash_password($passmd5) {
+
+    /* Require Password Hashes CLass
+     ---------------------------------- */
+    require_once DIR.'/admin/classes/PasswordHash.php';
+    // new class
+    $phpass = new PasswordHash( 8, false );
+    return $phpass->HashPassword( $passmd5 );
+}
+
+/**
+ * Check password hashes from database
+ * with Password hashes
+ *
+ * @param string $password md5(password) mustbe md5
+ */
+function check_passwordhashes($username, $password) {
+    global $db;
+
+    // check existance
+    $getpass = $db->select_by_order('admin', " WHERE `username` = '{$username}'", 'password');
+    if( $getpass ) {
+        /* Require Password Hashes CLass
+         ---------------------------------- */
+        require_once DIR.'/admin/classes/PasswordHash.php';
+        // new class
+        $phpass = new PasswordHash( 8, false );
+
+        /* if getpass is md5 or getpass is md5 of password
+         * this the more secure layered methods
+         ----------------------------------------------- */
+        if( $getpass == $password || md5($getpass) == $password ) {
+            $passwordhashes = $phpass->HashPassword($password);
+            $db->update('admin', array(':password' => $passwordhashes), 'username',  $username );
+            $getpass = $passwordhashes;
+        }
+
+        return (bool) $phpass->CheckPassword( $password, $getpass);
+
+    }
+}
+
+/**
+ * Check user exists
+ */
+function is_admin_user_exists( $username ) {
+    global $db;
+
+    /* add static to save multiple checked
+     -------------------------------------- */
+    static $return;
+    static $tmpusername;
+
+    /* Check if return has been defined and username is same
+     * with tmpusername variable
+    --------------------------------------- */
+    if( isset($return) && isset($username) && $usename == $tmpusername ) :
+        return $return;
     endif;
+
+    $return      = false;
+    $tmpusername = $username;
+    if($username) {
+        if($db->row_count('admin', 'username', array($username)) != 0) {
+            $return  = true;
+        }
+    }
+
+    return $return;
+}
+
+/**
+ * Check user signed in
+ */
+function is_signed_in() {
+    $session = isset($_SESSION['ADMIN']) ? $_SESSION['ADMIN'] : false;
+    if($session) :
+        if ($session && isset($session['u']) && isset($session['hash']) && $session['hash'] == md5($session['u']) && isset($session['time']) ) :
+
+            // check if user exists
+            if( is_admin_user_exists($session['u']) && is_numeric($session['time'])) :
+                /**
+                 * multiple security check if times gmdate less than current
+                 * prevent injecting cookies
+                 */
+                $time    = $session['time'];
+                $timenow = time();
+                if( $time <= $timenow ) :
+                    
+                    /* Add static prevent calling multiple
+                    -------------------------------------------------------- */
+                    static $getpass;
+
+                    if(isset($getpass) && $getpass ) {
+                        $getpass = $getpass;
+                    } else {
+                        global $db;
+                        // check existance
+                        $getpass = $db->select_by_order('admin', " WHERE `username` = '".$session['u']."'", 'password');
+                    }
+
+                    /* check if md5 will be automatic convert to hashes password
+                     * MD5 is 32 character length , this will be secure the database password stored
+                    ----------------------------------------------------------- */
+                    if( strlen($getpass) <= 32 ) {
+                        check_passwordhashes($session['u'], $getpass);
+                    }
+
+                    return true;
+
+                endif;
+            endif;
+        endif;
+    endif;
+
+    /* if has session unset the session admin no need destroy session
+     * Unset session ADMIn becaus the verification is used SESSION['ADMIN']
+    ---------------------------------------------------------------- */
+    if( $session ) :
+        unset($_SESSION['ADMIN']);
+    endif;
+    // return void none
+    return;
 }
 
 function is_add_new() {
