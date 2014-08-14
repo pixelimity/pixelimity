@@ -1,5 +1,10 @@
 `WARNING: This is early stage release and intended for testing purpose only. Using this CMS on live production site is not recommended.`
 
+___
+`id : branch ini adalah versi development aufa -> ( https://github.com/aufa), berbeda dengan versi branch dev original. versi aufa-dev hanya untuk security test.`
+
+`en: this branch development version of aufa -> ( https://github.com/aufa), different within original version of dev branch. aufa-dev version for security test only.`
+___
 
 #[pixelimity](http://pixelimity.com) — Content Management System
 
