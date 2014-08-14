@@ -1,12 +1,13 @@
 <?php
 /**
- * Installer file to make the site ready to used 
+ * Installer file to make the site ready to used
  * @package pixelimity
  */
 define ('BASE', str_replace("\\", "/", dirname(dirname(__FILE__))), true);
 define ('PATH', str_replace(rtrim($_SERVER['DOCUMENT_ROOT'], '/'), '', BASE));
 define ('DIR', BASE);
 define ('URL', 'http://'. $_SERVER['HTTP_HOST'] . PATH);
+
 if (file_exists(DIR .'/install/config.php')) :
     header("Location: ". URL);
 endif;
@@ -14,15 +15,15 @@ endif;
 if (isset($_POST['submit_install'])) :
     $data = array();
     $error = false;
-    
+
     foreach ($_POST['data'] as $key => $value) {
       $data[$key] = $value;
     }
-        
+
     $data['site_name'] = ($data['site_name']) ? $data['site_name'] : 'Pixelimity';
     $data['site_description'] = ($data['site_description']) ? $data['site_description'] : 'My Online Portfolio';
     $data['username'] = ($data['username']) ? $data['username'] : 'admin';
-    
+
     if (empty($data['password'])) :
         $error = true;
         $message = 'Please enter your account password';
@@ -36,49 +37,50 @@ if (isset($_POST['submit_install'])) :
         $error   = true;
         $message = 'Your email is invalid.';
     endif;
-    
+
     if (!$error) :
         try {
             error_reporting(0);
             $db = new PDO('mysql:host='. $data['dbhost'] .';dbname='. $data['dbname'], $data['dbuser'], $data['dbpassword'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
             $sql = str_replace(
-                array('{{site_name}}', '{{site_description}}', '{{username}}', '{{password}}', '{{email}}'), 
-                array($data['site_name'], $data['site_description'], $data['username'], md5($data['password']), $data['email']), 
+                array('{{site_name}}', '{{site_description}}', '{{username}}', '{{password}}', '{{email}}'),
+                array($data['site_name'], $data['site_description'], $data['username'], md5($data['password']), $data['email']),
                 file_get_contents(DIR .'/install/db.sql')
             );
             $db->exec($sql);
-            
+
             $config = file_get_contents(DIR .'/install/config-sample.php');
             $config = str_replace(
                 array('{{db_host}}', '{{db_name}}', '{{db_user}}', '{{db_password}}'),
                 array($data['dbhost'], $data['dbname'], $data['dbuser'], $data['dbpassword']),
                 $config
             );
-            
+
             if (!file_exists(DIR .'/install/config.php')) :
                 $config_file = fopen(DIR .'/install/config.php', 'w');
                 fwrite($config_file, $config);
                 fclose($config_file);
             endif;
-            
+
             if (!file_exists(DIR .'/.htaccess')) :
                 $rewrite = '
-                    Options -Indexes
-                    ErrorDocument 404 '. PATH .'/index.php?error
-                    RewriteEngine On
-                    RewriteCond %{REQUEST_FILENAME} !-f
-                    RewriteCond %{REQUEST_FILENAME} !-d
-                    RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
-                    RewriteRule (.*)$ '. PATH .'/$1/ [R=301,QSA]
-                    RewriteRule ^portfolio/([a-z-0-9-/]+)/$ index.php?portfolio=$1 [QSA]
-                    RewriteRule ^tag/([a-z-0-9-/]+)/$ index.php?tag=$1 [QSA]
-                    RewriteRule ^page/([a-z-0-9-/]+)/$ index.php?page=$1 [QSA]
-                ';
+# add rewrite rule for pixelimity route friendly url
+Options -Indexes
+ErrorDocument 404 '. PATH .'/index.php?error
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule (.*)$ '. PATH .'/$1/ [R=301,QSA]
+RewriteRule ^portfolio/([a-z-0-9-/]+)/$ index.php?portfolio=$1 [QSA]
+RewriteRule ^tag/([a-z-0-9-/]+)/$ index.php?tag=$1 [QSA]
+RewriteRule ^page/([a-z-0-9-/]+)/$ index.php?page=$1 [QSA]
+';
                 $config_file = fopen(DIR .'/.htaccess', 'w');
                 fwrite($config_file, str_replace('\t', '', $rewrite));
                 fclose($config_file);
             endif;
-            
+
             /**
              * Mail administrator when site is ready
              */
@@ -92,9 +94,9 @@ if (isset($_POST['submit_install'])) :
             $message = str_replace('\t', '', $message);
             $header  = 'From: Dicky Syaputra <dickysyaputra@gmail.com>\r\nReply-To: dickysyaputra@gmail.com';
             mail($admin_data['email'], $subject, $message, $header);
-            
+
             header("Location: ". URL ."/admin/signin.php?installed=true");
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             $message = 'The database setup is error. Please check again.';
         }
     endif;
@@ -103,7 +105,7 @@ endif;
 ?>
 <!DOCTYPE html>
 <html>
-<head>    
+<head>
   <!-- meta characterset -->
   <meta charset="utf-8">
   <!-- title -->
@@ -115,7 +117,7 @@ endif;
   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo URL .'/admin/css/admin.css'; ?>">
   <link rel="shortcut icon" href="<?php echo URL .'/admin/images/favicon.png'; ?>">
 </head>
-<body>
+<body class="install">
   <nav id="admin-menu">
     <div class="logo">
       <a href="<?php echo URL; ?>/install"><img src="<?php echo URL; ?>/admin/images/admin-logo.png" alt="Pixelimity" /></a>
@@ -128,7 +130,7 @@ endif;
   <!-- nav#admin-menu -->
   <div id="main">
     <form class="form-edit clearfix" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-      <header id="page-header" class="clearfix">
+      <header id="page-header" class="clearfix scrollfixed">
         <h1>Install Pixelimity</h1>
         <div class="actions">
           <input type="submit" class="btn btn-blue btn-submit" name="submit_install" value="Complete Install">

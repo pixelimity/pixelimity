@@ -5,7 +5,7 @@ define ('PXL', true, true);
 define ('ADMIN', true, true);
 
 /* Call config file */
-require_once ('../config.php');
+require_once '../config.php';
 
 /* Set page data */
 $data = array('current_menu' => 3, 'title' => 'Themes', 'load_scripts' => array('theme-items'));
@@ -17,7 +17,7 @@ extract($data);
 call_action('themes');
 
 /* Start compress HTML */
-ob_start('compress_html');
+ob_start();
 
 /* Get admin header */
 get_admin_header();
@@ -30,5 +30,3 @@ get_admin_footer();
 
 /* End compress HTML */
 ob_end_flush();
-
-?>
