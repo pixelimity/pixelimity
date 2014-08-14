@@ -247,11 +247,7 @@ function get_portfolio_thumbnail() {
 function the_portfolio_thumbnail() {
 	if(has_portfolio_thumbnail())
 		return false;
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 1c1c36c15d534a22e9d261b122371ab508db0989
 	echo get_portfolio_thumbnail();
 }
 	
