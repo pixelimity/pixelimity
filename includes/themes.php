@@ -245,6 +245,9 @@ function get_portfolio_thumbnail() {
 }
 
 function the_portfolio_thumbnail() {
+	if(has_portfolio_thumbnail())
+		return false;
+
 	echo get_portfolio_thumbnail();
 }
 	
