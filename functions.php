@@ -70,4 +70,13 @@ function redirect_to($uri, $self = false) {
 	exit();
 }
 
+/*
+  Menamabhakan fungsi untuk memudahkan menangani kesalahan pada aplikasi menjadi terpusat dan mudah kita kembangkan
+  [!] Ini hanya kerangka untuk sementara
+*/
+
+function handle_error($E_type='',$E_soloution='') {
+   exit('Error Found:'.$E_type.$E_soloution);
+}
+
 ?>
