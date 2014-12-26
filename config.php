@@ -5,7 +5,24 @@ if (!defined('PXL'))
 	exit('You can\'t access direct script.');
 	
 /* Start the session */
+
+// Akan Pindah Ke Session class
 session_start();
+
+/*
+Berpikir untuk membuat Dir Class, misalnya agar session_start(); tidak berulang dipanggil disetiap halaman
+*/
+
+ // Kita Mulai Dengan Menfatur Lokasi Baru
+ 
+  // Default SEPARATOR
+ define('DS', DIRECTORY_SEPARATOR);
+ // The base direktori of app
+ define('D_BASE', dirname(__FILE__).DS); // $_SERVER['DOCUMENT_ROOT']
+ // The core directori
+ define('CORE_DIR', D_BASE. 'core' .DS);
+ // Class directori
+ define('CLASS_DIR', CORE_DIR. 'class' .DS);
 
 /* Define some parameters */
 define ('BASE', str_replace("\\", "/", dirname(__FILE__)), true);
