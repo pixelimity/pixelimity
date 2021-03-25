@@ -11,7 +11,7 @@ function get_option($key) {
 	
 	foreach ($options as $option)
 		if ($option['option_key'] == $key)
-			return $option['value'];
+			return htmlspecialchars($option['value']);
 }
 
 function get_site_name() {
