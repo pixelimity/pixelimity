@@ -69,7 +69,7 @@ $portfolio = get_admin_items('portfolio', get_option('admin_portfolio_show'));
 							<div class="details">
 							
 								<h3 class="title">
-									<a href="<?php admin_url(); ?>/portfolio.php?action=edit&amp;id=<?php echo $data['id']; ?>"><?php echo ($data['title']) ? $data['title'] : 'No portfolio title'; ?></a>
+									<a href="<?php admin_url(); ?>/portfolio.php?action=edit&amp;id=<?php echo $data['id']; ?>"><?php echo ($data['title']) ? htmlspecialchars($data['title']) : 'No portfolio title'; ?></a>
 									<a href="<?php admin_url(); ?>/portfolio.php?action=delete_portfolio&amp;id=<?php echo $data['id']; ?>" class="delete" title="Delete permanently?"></a>
 									<span class="<?php echo strtolower(implode(explode(' ', $status), '-')); ?>"><?php echo $status; ?></span>
 								</h3>
